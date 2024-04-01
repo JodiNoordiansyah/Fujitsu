@@ -1,0 +1,63 @@
+﻿@model TbMSupplier
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>TbMSupplier</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form id="CreateForm" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SupplierCode" class="control-label"></label>
+                <input asp-for="SupplierCode" class="form-control" />
+                <span asp-validation-for="SupplierCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupplierName" class="control-label"></label>
+                <input asp-for="SupplierName" class="form-control" />
+                <span asp-validation-for="SupplierName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Province" class="control-label"></label>
+                <select class="form-select" asp-for="Province" asp-items="ViewBag.SelectedListProvince">
+                    <option value=""></option>
+                </select>
+                <span asp-validation-for="Province" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <select class="form-select" asp-for="City" asp-items="ViewBag.SelectedListCity">
+                    <option value=""></option>
+                </select>
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Pic" class="control-label"></label>
+                <input asp-for="Pic" class="form-control" />
+                <span asp-validation-for="Pic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-danger" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/js/CreateSupplier.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

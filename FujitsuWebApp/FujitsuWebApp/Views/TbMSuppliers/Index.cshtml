@@ -1,0 +1,128 @@
+﻿@model IEnumerable<TbMSupplier>
+
+@{
+    ViewData["Title"] = "Supplier Maintenance System";
+}
+
+<h1>Supplier Maintenance System</h1>
+
+<div class="row mt-2">
+    <div class="col-sm-2">
+        <label class="col-form-label">SupplierCode</label>
+    </div>
+    <div class="col-sm-3">
+        <input class="form-control" type="text" id="SupplierCodeSrc">
+    </div>  
+</div>
+
+<div class="row mt-2">
+    <div class="col-sm-2">
+        <label class="col-form-label">Province</label>
+    </div>
+    <div class="col-sm-3">
+        <select class="form-select" id="ProvinceSrc" asp-items="ViewBag.SelectedListProvince">
+            <option value=""></option>
+        </select>
+    </div>
+    <div class="col-md-4 ms-auto">
+        <button class="btn btn btn-danger" id="SearchButton">Search</button>
+        <button class="btn btn btn-danger ps-3 pe-3" id="ClearButton">Clear</button>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-sm-2">
+        <label class="col-form-label">City</label>
+    </div>
+    <div class="col-sm-3">
+        <select class="form-select" id="CitySrc" asp-items="ViewBag.SelectedListCity">
+            <option value=""></option>
+        </select>
+    </div>
+</div>
+
+
+<div class="row mt-4">
+    <div class="input-group mb-3">
+        <div class="col-sm-2">
+            <label class="col-form-label">Choose File</label>
+        </div>
+        <div class="col-sm-3">
+            <input class="form-control" type="text" id="filenameTextbox" readonly>
+        </div>
+        <div class="input-group-append">
+            <button class="btn btn-secondary" id="openFileDialogButton">...</button>
+        </div>
+        <div class="input-group-append ps-2">
+            <button class="btn btn-danger" id="uploadButton">Upload</button>
+        </div>
+        <div class="col-md-3 ms-auto">
+            <button class="btn btn-danger ps-4 pe-4" id="AddButton">Add</button>
+            <button class="btn btn-danger ps-4 pe-4" id="EditButton">Edit</button>
+            <button class="btn btn-danger" id="DeleteButton">Delete</button>
+        </div>
+    </div>
+    <input type="file" id="fileInput" style="display: none;">
+</div>
+
+<table id="tSupplier" class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupplierCode)
+            </th> 
+            <th>
+                @Html.DisplayNameFor(model => model.SupplierName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Province)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pic)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td><input class="chkBox" type="checkbox" value="true" /></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierCode)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Province)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pic)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div class="form-group">
+<form id="downloadForm" method="post" action="/TbMSuppliers/Download">
+        <button class="btn btn btn-danger" type="submit">Download</button>
+</form>
+</div>
+@section Scripts {
+    <script src="~/js/IndexSupplier.js"></script>
+}
+
+
